@@ -57,8 +57,6 @@ function authGoogle() {
   const processAuthGoogle = async () => {
     const get_result = await goLogin();
     if (get_result) {
-        console.log("get_result")
-        console.log(get_result.data.token)
         store.$patch({ 
             token: get_result.data.token
         });
