@@ -13,7 +13,7 @@ La aplicación permite a los usuarios:
 
 El proyecto está dividido en dos partes:
 
-### 🖥️ Frontend (Vue 3)
+### 🎨 Frontend (Vue 3)
 - Maneja la interfaz de usuario y la experiencia de autenticación
 - Gestiona el estado de la sesión y los tokens
 - Implementa las redirecciones necesarias para OAuth
