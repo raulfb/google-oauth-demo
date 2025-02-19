@@ -1,5 +1,5 @@
-# Frontend
-Frontend para la demo de OAuth 
+# Frontend 
+Frontend  programado en Vue 3 para la demo de OAuth 2.0 
 ## Instalación
 
 ```bash
