@@ -1,11 +1,16 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center justify-center" v-if="!error">
         Procesando autenticación con Google...
+    </div>
+    <div class="flex flex-col items-center justify-center" v-else>
+       <p>Error:{{ error }}</p>
+       <Button @click="volver">volver</Button>
     </div>
 </template>
 
 <script setup>
-import {useRouter } from "vue-router";
+import { ref } from "vue";
+import {useRouter} from "vue-router";
 import axios from "axios";
 import { useStore } from "../../../stores/store.js";
 
@@ -13,13 +18,16 @@ const router = useRouter();
 const store = useStore();
 const url = import.meta.env.VITE_APP_API_URL;
 const code = new URLSearchParams(window.location.search).get("code");
-console.log("console de code")
-console.log(code)
+let error = ref(false);
 
 if(code){
     authGoogle();
 }else{
-    console.log("No hay código")
+    error.value = "No se ha encontrado el código de autenticación";
+}
+
+function volver(){
+  router.push({ path: "/" });
 }
 
 function authGoogle() {
@@ -41,9 +49,8 @@ function authGoogle() {
 
         config
       );
-    } catch (error) {
-        console.log("ERRRORRR")
-        console.log(error)
+    } catch (err) {
+        error.value = err.response.data.error;
     }
   };
 
@@ -61,8 +68,6 @@ function authGoogle() {
   processAuthGoogle();
 
 }
-
-
 </script>
 
 
